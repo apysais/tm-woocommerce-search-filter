@@ -267,12 +267,6 @@ function tmwsf_custom_woocommerce_catalog_orderby( $sortby ) {
 	return $sortby;
 }
 
-//add_filter('posts_search', 'my_search_is_exact', 20, 2);
-function my_search_is_exact($search, $wp_query){
-	print_r($search);
-	print_r($wp_query);
-	return $search;
-}
 
 function roundNearestUpBy($number, $round_to_near = 1000) {
 	return ceil( $number / $round_to_near ) * $round_to_near;
@@ -281,7 +275,6 @@ function roundNearestDownBy($number, $round_to_near = 100) {
 	return floor( $number / $round_to_near ) * $round_to_near;
 }
 
-tmwsf_get_house_and_land_price_range();
 function tmwsf_get_house_and_land_price_range() {
 	$min = TMWSF_StoreMinMaxPrice::get_instance()->min([
 		'extend_prefix' => '_' . TMWSF_HOUSELAND_CAT_SLUG,
