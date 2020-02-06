@@ -1,0 +1,6 @@
+sticky plugin/jquery
+https://www.jqueryscript.net/layout/Creating-A-Fixed-Position-Sidebar-With-jQuery-Sticky-Sidebar-Plugin.html
+https://abouolia.github.io/sticky-sidebar/#examples
+https://stackoverflow.com/questions/21447947/jquery-fixing-a-side-bar-while-scrolling-until-bottom
+https://www.jquery-az.com/3-demos-javascript-jquery-based-sticky-sidebar/
+https://rgalus.github.io/sticky-js/
