@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-class TMWSF_StoreMinMaxPrice {
+class TMWSF_StoreMinMaxLotArea {
   /**
 	 * instance of this class
 	 *
@@ -39,7 +39,7 @@ class TMWSF_StoreMinMaxPrice {
   public function __construct(){}
 
   /**
-   * Min Price.
+   * Min.
    *
    * @param array $args {
    *		Array of arguments.
@@ -54,13 +54,13 @@ class TMWSF_StoreMinMaxPrice {
    */
   public function min( $args = [] ) {
     // Key prefix in _post_meta table.
-    $prefix = 'tre_min_price';
+    $prefix = 'tre_min_lot_fontage';
 		$defaults = array(
 			'action'  => 'r',
 			'value'   => '',
 			'prefix'  => $prefix,
 			'extend_prefix'  => '',
-			'default'  => '',
+			'default' => ''
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -79,7 +79,7 @@ class TMWSF_StoreMinMaxPrice {
   }
 
   /**
-   * Max Price.
+   * Max.
    *
    * @param array $args {
    *		Array of arguments.
@@ -94,7 +94,7 @@ class TMWSF_StoreMinMaxPrice {
    */
   public function max( $args = [] ) {
     // Key prefix in _post_meta table.
-    $prefix = 'tre_max_price';
+    $prefix = 'tre_max_lot_fontage';
     $defaults = array(
       'action'  => 'r',
       'value'   => '',
@@ -126,7 +126,11 @@ class TMWSF_StoreMinMaxPrice {
       $category = $args['category'];
     }
 
-    if ( $category ) {
+    $get_attribute = false;
+    if ( isset( $args['attribute'] ) ) {
+      $get_attribute = $args['attribute'];
+    }
+    if ( $category && $get_attribute ) {
       $products = wc_get_products( array(
           'status'        => 'publish',
           'limit'         => -1,
@@ -134,24 +138,29 @@ class TMWSF_StoreMinMaxPrice {
           'category'      => [$category],
       ) );
       if ( sizeof( $products ) > 0 ) {
+        $attributes_arr = [];
+
         foreach ( $products as $product ) {
-            $price = $product->get_price();
-            if ( trim($price) != '' ) {
-              $productsResults[] = intval($price);
+            $attributes = $product->get_attribute($get_attribute);
+            if ( $attributes ) {
+              $attributes_arr[] = $attributes;
             }
         }
+
+        $lot_array_unique = array_unique($attributes_arr);
+
         $min_max_data = [
-          'min_price' => min( $productsResults ),
-          'max_price' => max( $productsResults ),
+          'min_lot_fontage' => min( $lot_array_unique ),
+          'max_lot_fontage' => max( $lot_array_unique ),
         ];
         $this->min([
           'extend_prefix' => '_'.$category,
-          'value' => $min_max_data['min_price'],
+          'value' => $min_max_data['min_lot_fontage'],
           'action' => 'u'
         ]);
         $this->max([
           'extend_prefix' => '_'.$category,
-          'value' => $min_max_data['max_price'],
+          'value' => $min_max_data['max_lot_fontage'],
           'action' => 'u'
         ]);
       }
@@ -159,21 +168,6 @@ class TMWSF_StoreMinMaxPrice {
 
     return $min_max_data;
   }
-
-  public function houseAndLAndCategory( $post_id, $category = TMWSF_HOUSELAND_CAT_SLUG ) {
-    $terms = get_the_terms( $post_id, 'product_cat' );
-    $prod_cat = [];
-    $min_max_data = false;
-    foreach ( $terms as $term ) {
-        $prod_cat[] = $term->slug;
-    }
-		if ( in_array($category, $prod_cat) ) {
-      $min_max_data = $this->store([
-        'category' => $category
-      ]);
-    }
-    return $min_max_data;
-	}
 
   public function lAndCategory( $post_id, $category = TMWSF_LAND_CAT_SLUG ) {
     $terms = get_the_terms( $post_id, 'product_cat' );

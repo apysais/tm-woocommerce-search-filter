@@ -35,10 +35,13 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'TM_WOOCOMMERCE_SEARCH_FILTER_VERSION', '1.0.7' );
+define( 'TM_WOOCOMMERCE_SEARCH_FILTER_VERSION', '1.0.12' );
 define( 'TMWSF_INIT_SHORTCODE', false);
 define( 'TMWSF_HOUSELAND_CAT_SLUG', 'house-and-land');
-define( 'TMWSF_HOUSELAND_LOTAREA_ATTIBUTE_SLUG', 'pa_lot-area');
+define( 'TMWSF_LAND_CAT_SLUG', 'land-estate');
+define( 'TMWSF_HOUSELAND_LOT_AREA_ATTIBUTE_SLUG', 'pa_lot-area');
+define( 'TMWSF_HOUSELAND_LOT_DEPTH_ATTIBUTE_SLUG', 'pa_lot-depth');
+define( 'TMWSF_HOUSELAND_LOT_FRONTAGE_ATTIBUTE_SLUG', 'pa_lot-frontage');
 
 function tmwsf_called_shortcode( $set = false ) {
 	global $tm_search_ui_instance;
@@ -122,7 +125,9 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-tm-woocommerce-search-filt
 
 require plugin_dir_path( __FILE__ ) . 'shortcode.php';
 require plugin_dir_path( __FILE__ ) . 'public-ajax.php';
+require plugin_dir_path( __FILE__ ) . 'functions-util.php';
 require plugin_dir_path( __FILE__ ) . 'functions.php';
+require plugin_dir_path( __FILE__ ) . 'hooks.php';
 
 /**
  * Get the plugin directory path.
@@ -155,30 +160,3 @@ function run_tm_woocommerce_search_filter() {
 }
 //run_tm_woocommerce_search_filter();
 add_action( 'plugins_loaded', 'run_tm_woocommerce_search_filter' );
-
-function tmwsf_set_range( $post_id, $post, $update ) {
-	if ( $parent_id = wp_is_post_revision( $post_id ) )
-			$post_id = $parent_id;
-
-	if ( isset( $_POST['post_type'] ) && $_POST['post_type'] == 'product' ) {
-		// get data and set any variables here
-
-		// get price range
-		// house and land category
-		TMWSF_StoreMinMaxPrice::get_instance()->houseAndLAndCategory( $post_id );
-
-		// get the lot area range
-		//  house and land
-		TMWSF_StoreMinMaxLotArea::get_instance()->houseAndLAndCategory( $post_id );
-
-		// unhook this function so it doesn't loop infinitely
-		remove_action( 'save_post', 'tmwsf_set_range', 10, 3 );
-
-		// do your thing here, which calls save_post again
-		//wp_update_post( array( 'ID' => $post_id, 'post_status' => 'private' ) );
-
-		// re-hook this function
-		add_action( 'save_post', 'tmwsf_set_range', 10, 3 );
-	}
-}
-add_action( 'save_post', 'tmwsf_set_range', 10, 3 );

@@ -1,8 +1,7 @@
 <div id="tm-search-filter-main">
 <form id="form-search-filter" class="tm-search-filter-form" method="GET">
   <div class="search-filter">
-
-
+    
     <div class="search-price-container">
       <p>
         <label for="amount">Price range:</label>

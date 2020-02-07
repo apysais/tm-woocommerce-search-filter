@@ -64,7 +64,6 @@ class TMWSF_StoreMinMaxLotArea {
 		);
 
 		$args = wp_parse_args( $args, $defaults );
-
 		switch( $args['action'] ) {
 			case 'd':
 				delete_option( $args['prefix'] . $args['extend_prefix'] );
@@ -104,7 +103,6 @@ class TMWSF_StoreMinMaxLotArea {
     );
 
     $args = wp_parse_args( $args, $defaults );
-
     switch( $args['action'] ) {
       case 'd':
         delete_option( $args['prefix'] . $args['extend_prefix'] );
@@ -118,87 +116,32 @@ class TMWSF_StoreMinMaxLotArea {
     }
   }
 
-  public function store( $args = [] ) {
-    $productsResults = [];
-
-    $category = false;
-    if ( isset( $args['category'] ) ) {
-      $category = $args['category'];
-    }
-
-    $get_attribute = false;
-    if ( isset( $args['attribute'] ) ) {
-      $get_attribute = $args['attribute'];
-    }
-    if ( $category && $get_attribute ) {
-      $products = wc_get_products( array(
-          'status'        => 'publish',
-          'limit'         => -1,
-          'stock_status'  => 'instock',
-          'category'      => [$category],
-      ) );
-      if ( sizeof( $products ) > 0 ) {
-        $attributes_arr = [];
-
-        foreach ( $products as $product ) {
-            $attributes = $product->get_attribute($get_attribute);
-            if ( $attributes ) {
-              $attributes_arr[] = $attributes;
-            }
-        }
-
-        $lot_array_unique = array_unique($attributes_arr);
-
-        $min_max_data = [
-          'min_lot_area' => min( $lot_array_unique ),
-          'max_lot_area' => max( $lot_array_unique ),
-        ];
-        $this->min([
-          'extend_prefix' => '_'.$category,
-          'value' => $min_max_data['min_lot_area'],
-          'action' => 'u'
-        ]);
-        $this->max([
-          'extend_prefix' => '_'.$category,
-          'value' => $min_max_data['max_lot_area'],
-          'action' => 'u'
-        ]);
-      }
-    }
-
-    return $min_max_data;
-  }
-
   public function houseAndLAndCategory( $post_id, $category = TMWSF_HOUSELAND_CAT_SLUG ) {
-    $terms = get_the_terms( $post_id, 'product_cat' );
-    $prod_cat = [];
-    $min_max_data = false;
-    foreach ( $terms as $term ) {
-        $prod_cat[] = $term->slug;
-    }
-
-		if ( in_array($category, $prod_cat) ) {
-      $min_max_data = $this->store([
-        'category' => $category,
-        'attribute' => TMWSF_HOUSELAND_LOTAREA_ATTIBUTE_SLUG
-      ]);
-    }
-    return $min_max_data;
+    $ret = TMWSF_MinMaxRange::get_instance()->setByCategoryAttribute($post_id, $category, TMWSF_HOUSELAND_LOT_AREA_ATTIBUTE_SLUG);
+		$this->min([
+			'extend_prefix' => '_'.$category,
+			'value' => $ret['min'],
+			'action' => 'u'
+		]);
+		$this->max([
+			'extend_prefix' => '_'.$category,
+			'value' => $ret['max'],
+			'action' => 'u'
+		]);
 	}
 
   public function lAndCategory( $post_id, $category = TMWSF_LAND_CAT_SLUG ) {
-    $terms = get_the_terms( $post_id, 'product_cat' );
-    $prod_cat = [];
-    $min_max_data = false;
-    foreach ( $terms as $term ) {
-        $prod_cat[] = $term->slug;
-    }
-		if ( in_array($category, $prod_cat) ) {
-      $min_max_data = $this->store([
-        'category' => $category
-      ]);
-    }
-    return $min_max_data;
+    $ret = TMWSF_MinMaxRange::get_instance()->setByCategoryAttribute($post_id, $category, TMWSF_HOUSELAND_LOT_AREA_ATTIBUTE_SLUG);
+		$this->min([
+			'extend_prefix' => '_'.$category,
+			'value' => $ret['min'],
+			'action' => 'u'
+		]);
+		$this->max([
+			'extend_prefix' => '_'.$category,
+			'value' => $ret['max'],
+			'action' => 'u'
+		]);
 	}
 
 }

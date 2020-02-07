@@ -1,16 +1,4 @@
 <?php
-
-function tre_has_search_ui_shortcode() {
-	global $post;
-	global $shortcode_tags, $wp_filter;
-	global $varObj;
-
-	if( !is_admin() && $post && isset($post->post_content) && has_shortcode($post->post_content, 'tm_search_ui') ) {
-		return true;
-	}
-	return false;
-}
-
 function filter_woocommerce_shortcode_products_query( $array ) {
 	$bath_array = [];
 	$bed_array = [];
@@ -218,62 +206,6 @@ function filter_woocommerce_shortcode_products_query( $array ) {
 };
 //add_action('init', 'filter_woocommerce_shortcode_products_query', 10);
 
-function tre_get_tax_query_greater_equal($num, $tax) {
-	$tax_query = [];
-
-	$terms = get_terms([
-		'taxonomy' => $tax,
-	]);
-
-	$amps = [];
-	foreach( $terms as $term ) {
-		if( (int) $term->slug >= (int) $num ) {
-			$amps[] = $term->term_id;
-		}
-	}
-
-	return $amps;
-}
-
-function tre_get_tax_query($min, $max, $taxonomy) {
-  $tax_query = [];
-
-  $terms = get_terms([
-    'taxonomy' => $taxonomy,
-  ]);
-
-  $amps = [];
-  foreach( $terms as $term ) {
-    if( (int) $term->slug <= (int) $max && (int) $term->slug >= (int) $min ) {
-      $amps[] = $term->term_id;
-    }
-  }
-
-  return $amps;
-}
-
-function tre_pagination($link) {
-
-	return $link;
-}
-add_filter('paginate_links', 'tre_pagination', 10, 1);
-
-add_filter( 'woocommerce_catalog_orderby', 'tmwsf_custom_woocommerce_catalog_orderby' );
-function tmwsf_custom_woocommerce_catalog_orderby( $sortby ) {
-	$sortby['rand'] = 'Sort by: Random';
-	if ( !isset( $sortby['date'] ) ) {
-		$sortby['date'] = 'Sort by latest';
-	}
-	return $sortby;
-}
-
-
-function roundNearestUpBy($number, $round_to_near = 1000) {
-	return ceil( $number / $round_to_near ) * $round_to_near;
-}
-function roundNearestDownBy($number, $round_to_near = 100) {
-	return floor( $number / $round_to_near ) * $round_to_near;
-}
 
 function tmwsf_get_house_and_land_price_range() {
 	$min = TMWSF_StoreMinMaxPrice::get_instance()->min([
@@ -294,6 +226,8 @@ function tmwsf_get_house_and_land_price_range() {
 	return $get;
 }
 
+// $ret = tmwsf_get_house_and_land_lot_range();
+// tmwsf_pre($ret);
 function tmwsf_get_house_and_land_lot_range() {
 	$min = TMWSF_StoreMinMaxLotArea::get_instance()->min([
 		'extend_prefix' => '_' . TMWSF_HOUSELAND_CAT_SLUG,
