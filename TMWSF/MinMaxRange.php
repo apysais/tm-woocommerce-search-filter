@@ -40,7 +40,7 @@ class TMWSF_MinMaxRange {
 
   public function storeByAttribute( $args = [] ) {
     $productsResults = [];
-    $min_max_data = [];
+    $min_max_data = false;
 
     $category = false;
     if ( isset( $args['category'] ) ) {

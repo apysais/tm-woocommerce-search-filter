@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-class TMWSF_StoreMinMaxLotFrontage {
+class TMWSF_StoreMinMaxLotDepth {
   /**
 	 * instance of this class
 	 *
@@ -54,7 +54,7 @@ class TMWSF_StoreMinMaxLotFrontage {
    */
   public function min( $args = [] ) {
     // Key prefix in _post_meta table.
-    $prefix = 'tre_min_lot_frontage';
+    $prefix = 'tre_min_lot_depth';
 		$defaults = array(
 			'action'  => 'r',
 			'value'   => '',
@@ -94,7 +94,7 @@ class TMWSF_StoreMinMaxLotFrontage {
    */
   public function max( $args = [] ) {
     // Key prefix in _post_meta table.
-    $prefix = 'tre_max_lot_frontage';
+    $prefix = 'tre_max_lot_depth';
     $defaults = array(
       'action'  => 'r',
       'value'   => '',
@@ -119,7 +119,7 @@ class TMWSF_StoreMinMaxLotFrontage {
   }
 
   public function lAndCategory( $post_id, $category = TMWSF_LAND_CAT_SLUG ) {
-    $ret = TMWSF_MinMaxRange::get_instance()->setByCategoryAttribute($post_id, $category, TMWSF_HOUSELAND_LOT_FRONTAGE_ATTIBUTE_SLUG);
+    $ret = TMWSF_MinMaxRange::get_instance()->setByCategoryAttribute($post_id, $category, TMWSF_HOUSELAND_LOT_DEPTH_ATTIBUTE_SLUG);
 		if ( $ret ) {
 			$this->min([
 				'extend_prefix' => '_'.$category,

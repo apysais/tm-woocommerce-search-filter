@@ -118,30 +118,34 @@ class TMWSF_StoreMinMaxLotArea {
 
   public function houseAndLAndCategory( $post_id, $category = TMWSF_HOUSELAND_CAT_SLUG ) {
     $ret = TMWSF_MinMaxRange::get_instance()->setByCategoryAttribute($post_id, $category, TMWSF_HOUSELAND_LOT_AREA_ATTIBUTE_SLUG);
-		$this->min([
-			'extend_prefix' => '_'.$category,
-			'value' => $ret['min'],
-			'action' => 'u'
-		]);
-		$this->max([
-			'extend_prefix' => '_'.$category,
-			'value' => $ret['max'],
-			'action' => 'u'
-		]);
+		if ( $ret ) {
+			$this->min([
+				'extend_prefix' => '_'.$category,
+				'value' => $ret['min'],
+				'action' => 'u'
+			]);
+			$this->max([
+				'extend_prefix' => '_'.$category,
+				'value' => $ret['max'],
+				'action' => 'u'
+			]);
+		}
 	}
 
   public function lAndCategory( $post_id, $category = TMWSF_LAND_CAT_SLUG ) {
     $ret = TMWSF_MinMaxRange::get_instance()->setByCategoryAttribute($post_id, $category, TMWSF_HOUSELAND_LOT_AREA_ATTIBUTE_SLUG);
-		$this->min([
-			'extend_prefix' => '_'.$category,
-			'value' => $ret['min'],
-			'action' => 'u'
-		]);
-		$this->max([
-			'extend_prefix' => '_'.$category,
-			'value' => $ret['max'],
-			'action' => 'u'
-		]);
+		if ( $ret ) {
+			$this->min([
+				'extend_prefix' => '_'.$category,
+				'value' => $ret['min'],
+				'action' => 'u'
+			]);
+			$this->max([
+				'extend_prefix' => '_'.$category,
+				'value' => $ret['max'],
+				'action' => 'u'
+			]);
+		}
 	}
 
 }

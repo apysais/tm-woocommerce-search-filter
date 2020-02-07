@@ -16,6 +16,12 @@ function tmwsf_set_range( $post_id, $post, $update ) {
 		TMWSF_StoreMinMaxLotArea::get_instance()->houseAndLAndCategory( $post_id );
 		TMWSF_StoreMinMaxLotArea::get_instance()->lAndCategory( $post_id );
 
+		// land frontage
+		TMWSF_StoreMinMaxLotFrontage::get_instance()->lAndCategory( $post_id );
+
+		// land depth
+		TMWSF_StoreMinMaxLotDepth::get_instance()->lAndCategory( $post_id );
+
 		// unhook this function so it doesn't loop infinitely
 		remove_action( 'save_post', 'tmwsf_set_range', 10, 3 );
 
