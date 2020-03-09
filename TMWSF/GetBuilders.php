@@ -40,9 +40,33 @@ class TMWSF_GetBuilders {
 
   }
 
+	public function get_by( $cat ) {
+		$args = array(
+				'stock_status' => 'instock',
+				'limit' => -1,
+				'category' => array( $cat ),
+		);
+		$products = wc_get_products( $args );
+		$select_vendors = [];
+		foreach($products as $product){
+			$vendors  = get_the_terms( $product->get_id(), 'dc_vendor_shop' );
+			if ( $vendors ) {
+				foreach( $vendors as $vendor ) {
+					$select_vendors[$vendor->term_id] = [
+						'id' => $vendor->term_id,
+	          'name' => $vendor->name,
+	          'slug' => $vendor->slug,
+	          'count' => $vendor->count
+					];
+				}
+			}
+		}
+		return $select_vendors;
+	}
+
   public function get() {
     $data = [];
-
+		//$this->get_by();
     $tax_vendors = get_terms([
       'taxonomy' => 'dc_vendor_shop',
   	  'hide_empty' => true,
@@ -68,8 +92,16 @@ class TMWSF_GetBuilders {
 
   }//get method
 
-  public function getHtml() {
-    $get_data = $this->get();
+  public function getHtml( $atts = [] ) {
+		
+		$category = '';
+		if ( isset( $_POST['category'] ) ) {
+			$category = $_POST['category'];
+		} elseif ( isset( $_GET['category'] ) ) {
+			$category = $_GET['category'];
+		} elseif ( isset( $atts['category'] ) ) {
+			$category = $atts['category'];
+		}
 
     $builders = -1;
   	if ( isset( $_POST['builders'] ) ) {
@@ -77,6 +109,8 @@ class TMWSF_GetBuilders {
   	} elseif ( isset( $_GET['builders'] ) ) {
   		$builders = $_GET['builders'];
   	}
+		$get_data = $this->get_by( $category );
+
     require_once tmwsf_get_plugin_dir() . 'public/partials/dropdown-builder.php';
   }//getHtml
 

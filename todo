@@ -1,0 +1,13 @@
+03/03/2020
+so this are the things need to be done:
+- wild search on search filter
+- default sort to random ( default )
+- vendors to display only if they have land ( on land search ui ) or land and house package ( on land and house package ui )
+- settings in the backend to change search ui style
+- add the preload image/gif
+
+center preload loading image
+https://stackoverflow.com/questions/6256043/css-position-loading-indicator-in-the-center-of-the-screen
+
+wildcard search
+https://wordpress.stackexchange.com/questions/18703/wp-query-with-post-title-like-something

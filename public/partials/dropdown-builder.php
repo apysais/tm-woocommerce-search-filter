@@ -1,5 +1,5 @@
 <?php if ( $get_data ) : ?>
-  <p>Builders</p>
+  <label class="label-search-ui">Builders</label>
   <select name="builders" class="search-query tm-search-filter-select-builder search-builder" data-request="search-builder">
     <option value="-1"  data-term-id="-1" data-slug="-1" <?php echo ($builders == -1) ? 'selected':'';?> >
       Any

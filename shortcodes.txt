@@ -1,0 +1,2 @@
+[tm_search_ui stickey_sidebar_container="site-content" columns="4" category="house-and-land" orderby="title" limit=50]
+[tm_search_ui_land_estate stickey_sidebar_container="site-content" columns="4" category="land-estate" orderby="title" limit=50]

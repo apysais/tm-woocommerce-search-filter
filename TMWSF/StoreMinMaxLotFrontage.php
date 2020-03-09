@@ -120,6 +120,7 @@ class TMWSF_StoreMinMaxLotFrontage {
 
   public function lAndCategory( $post_id, $category = TMWSF_LAND_CAT_SLUG ) {
     $ret = TMWSF_MinMaxRange::get_instance()->setByCategoryAttribute($post_id, $category, TMWSF_HOUSELAND_LOT_FRONTAGE_ATTIBUTE_SLUG);
+		
 		if ( $ret ) {
 			$this->min([
 				'extend_prefix' => '_'.$category,

@@ -1,0 +1,192 @@
+[
+    {
+        "key": "group_5e610745998df",
+        "title": "Search UI Settings",
+        "fields": [
+            {
+                "key": "field_5e61076fb651f",
+                "label": "Color",
+                "name": "color",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_5e610796b6520",
+                        "label": "Slider Range Color",
+                        "name": "slider_range_color",
+                        "type": "color_picker",
+                        "instructions": "Background Color for the Slider Range",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "#eda037"
+                    },
+                    {
+                        "key": "field_5e61099cd7f3c",
+                        "label": "Radio Button Label Background",
+                        "name": "radio_button_label_background",
+                        "type": "color_picker",
+                        "instructions": "Background color of radio button label",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "#ffffff"
+                    },
+                    {
+                        "key": "field_5e610af0d7f3d",
+                        "label": "Radio Button Label Color",
+                        "name": "radio_button_label_color",
+                        "type": "color_picker",
+                        "instructions": "Color of the radio button label font",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "#000000"
+                    },
+                    {
+                        "key": "field_5e610b30d7f3e",
+                        "label": "Radio Button Label Border",
+                        "name": "radio_button_label_border",
+                        "type": "color_picker",
+                        "instructions": "Color of the radio button label border",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "#ffffff"
+                    },
+                    {
+                        "key": "field_5e610b5ad7f3f",
+                        "label": "Radio Button Label Color Hover Background",
+                        "name": "radio_button_label_color_hover_background",
+                        "type": "color_picker",
+                        "instructions": "Color of radio button background label when hovered",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "#ffa501"
+                    },
+                    {
+                        "key": "field_5e610b93d7f40",
+                        "label": "Radio Button Label Hover Font Color",
+                        "name": "radio_button_label_hover_font_color",
+                        "type": "color_picker",
+                        "instructions": "Color of radio button label font when hovered",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "#ffffff"
+                    },
+                    {
+                        "key": "field_5e610bbbd7f41",
+                        "label": "Radio Button Color Label Hover Border",
+                        "name": "radio_button_color_label_hover_border",
+                        "type": "color_picker",
+                        "instructions": "Color of radio button label border when hovered",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "#ffa501"
+                    },
+                    {
+                        "key": "field_5e610e04c919c",
+                        "label": "Radio Button Color Label Chosen Background",
+                        "name": "radio_button_color_label_chosen_background",
+                        "type": "color_picker",
+                        "instructions": "Background color of the radio button label that is chosen",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "#ffffff"
+                    },
+                    {
+                        "key": "field_5e610e2ec919d",
+                        "label": "Radio Button Color Label Font Chosen",
+                        "name": "radio_button_color_label_font_chosen",
+                        "type": "color_picker",
+                        "instructions": "The color of the label font when chosen.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "#000000"
+                    },
+                    {
+                        "key": "field_5e610e51c919e",
+                        "label": "Radio Button Color Label Chosen Border",
+                        "name": "radio_button_color_label_chosen_border",
+                        "type": "color_picker",
+                        "instructions": "The border color of the radio button label chosen.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "#ffa502"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "search-ui-general-settings"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": ""
+    }
+]

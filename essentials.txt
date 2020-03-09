@@ -4,3 +4,7 @@ https://abouolia.github.io/sticky-sidebar/#examples
 https://stackoverflow.com/questions/21447947/jquery-fixing-a-side-bar-while-scrolling-until-bottom
 https://www.jquery-az.com/3-demos-javascript-jquery-based-sticky-sidebar/
 https://rgalus.github.io/sticky-js/
+
+
+sticky using css
+https://dev.to/clairecodes/how-to-make-a-sticky-sidebar-with-two-lines-of-css-2ki7

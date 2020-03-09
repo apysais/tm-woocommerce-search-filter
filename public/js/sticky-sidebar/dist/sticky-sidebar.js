@@ -158,9 +158,9 @@ var stickySidebar = createCommonjsModule(function (module, exports) {
         this.dimensions = {
           translateY: 0,
           maxTranslateY: 0,
-          topSpacing: 0,
+          topSpacing: 120,
           lastTopSpacing: 0,
-          bottomSpacing: 0,
+          bottomSpacing: 100,
           lastBottomSpacing: 0,
           sidebarHeight: 0,
           sidebarWidth: 0,

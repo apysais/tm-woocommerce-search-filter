@@ -118,6 +118,7 @@ class TMWSF_StoreMinMaxLotArea {
 
   public function houseAndLAndCategory( $post_id, $category = TMWSF_HOUSELAND_CAT_SLUG ) {
     $ret = TMWSF_MinMaxRange::get_instance()->setByCategoryAttribute($post_id, $category, TMWSF_HOUSELAND_LOT_AREA_ATTIBUTE_SLUG);
+		//tmwsf_pre($ret);exit();
 		if ( $ret ) {
 			$this->min([
 				'extend_prefix' => '_'.$category,
@@ -134,6 +135,8 @@ class TMWSF_StoreMinMaxLotArea {
 
   public function lAndCategory( $post_id, $category = TMWSF_LAND_CAT_SLUG ) {
     $ret = TMWSF_MinMaxRange::get_instance()->setByCategoryAttribute($post_id, $category, TMWSF_HOUSELAND_LOT_AREA_ATTIBUTE_SLUG);
+		// echo 'land';
+		// tmwsf_pre($ret);exit();
 		if ( $ret ) {
 			$this->min([
 				'extend_prefix' => '_'.$category,

@@ -51,6 +51,7 @@ class TMWSF_MinMaxRange {
     if ( isset( $args['attribute'] ) ) {
       $get_attribute = $args['attribute'];
     }
+
     if ( $category && $get_attribute ) {
       $products = wc_get_products( array(
           'status'        => 'publish',
@@ -68,7 +69,8 @@ class TMWSF_MinMaxRange {
               $attributes_arr[] = $attributes;
             }
         }
-
+				//echo $get_attribute;
+				//tmwsf_pre($attributes_arr);
         $lot_array_unique = array_unique($attributes_arr);
 
         $min_max_data = [
@@ -94,6 +96,7 @@ class TMWSF_MinMaxRange {
         'category' => $category,
         'attribute' => $attribute
       ]);
+			//tmwsf_pre($min_max_data);
     }
     return $min_max_data;
   }

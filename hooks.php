@@ -49,3 +49,20 @@ function tmwsf_custom_woocommerce_catalog_orderby( $sortby ) {
 	}
 	return $sortby;
 }
+
+if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page(array(
+		'page_title' 	=> 'Search UI General Settings',
+		'menu_title'	=> 'Search UI Settings',
+		'menu_slug' 	=> 'search-ui-general-settings',
+		'capability'	=> 'edit_posts',
+		'icon_url' => 'dashicons-search',
+		'redirect'		=> false
+	));
+
+}
+function search_filter($query) {
+    print_r($query);
+}
+//add_action( 'pre_get_posts', 'search_filter' );
