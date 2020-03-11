@@ -93,7 +93,7 @@ class TMWSF_GetBuilders {
   }//get method
 
   public function getHtml( $atts = [] ) {
-		
+
 		$category = '';
 		if ( isset( $_POST['category'] ) ) {
 			$category = $_POST['category'];
@@ -102,7 +102,7 @@ class TMWSF_GetBuilders {
 		} elseif ( isset( $atts['category'] ) ) {
 			$category = $atts['category'];
 		}
-
+		
     $builders = -1;
   	if ( isset( $_POST['builders'] ) ) {
   		$builders = $_POST['builders'];

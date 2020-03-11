@@ -127,7 +127,7 @@ function filter_land_woocommerce_shortcode_products_query( $array ) {
 
 	$array['paged'] = $paged;
 
-	$orderby = 'menu_order';
+	$orderby = 'rand';
 	if ( isset( $_POST['orderby'] ) ) {
 			$orderby = $_POST['orderby'];
 	} elseif ( isset( $_GET['orderby'] ) ) {

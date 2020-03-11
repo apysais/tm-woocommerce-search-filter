@@ -153,13 +153,20 @@ function tm_search_ui_func( $atts ) {
 	//wp_enqueue_script( tmwsf_get_text_domain(), $js_path . 'js/tm-woocommerce-search-filter-public.js', array( 'jquery' ), TM_WOOCOMMERCE_SEARCH_FILTER_VERSION, true );
 	wp_enqueue_script( tmwsf_get_text_domain(), $js_path . 'js/tm-woocommerce-search-filter-public.js', array( 'jquery' ), TM_WOOCOMMERCE_SEARCH_FILTER_VERSION, true );
 	// Localize the script with new data
+	$preload_image = TMWSF_SettingsOption::get_instance()->preload_ajax_image();
+	$preload_image_style = '';
+	if ( $preload_image ) {
+		$url = $preload_image['url'];
+		$preload_image_style = "background-image:url($url);background-repeat: no-repeat;background-position: 50% 50%;";
+	}
 
 	$tm_arr_js = array(
 			'home_url' => home_url( $wp->request ),
 			'use_stickey_sidebar' => $atts['stickey_sidebar_class'] ? 1 : 0,
 			'category' => $category,
 			'session' => $get_session ? $get_session : 0,
-			'post_session' => $post_session ? $post_session : []
+			'post_session' => $post_session ? $post_session : [],
+			'preload_image_style' => $preload_image_style
 	);
 
 	if ( $atts['use_stickey_sidebar'] ) {

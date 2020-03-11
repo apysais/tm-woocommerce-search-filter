@@ -33,7 +33,7 @@
               <input type="text" name="search-general" class="tm-search-filter-general search-general" data-request="search-general" value="<?php echo $search_general;?>">
             </div>
 
-            <?php TMWSF_GetBuilders::get_instance()->getHtml(); ?>
+            <?php TMWSF_GetBuilders::get_instance()->getHtml($atts); ?>
 
             <input type="hidden" name="action" value="tm_search_land_estate_filter_action">
             <input type="hidden" name="category" class="search-category" value="<?php echo $atts['category'];?>">

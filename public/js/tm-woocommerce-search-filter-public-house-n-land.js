@@ -58,7 +58,7 @@ jQuery(document).ready(function($) {
 	}
 
 	if ( !isMobile ) {
-		init_sticky_sidebar();
+		//init_sticky_sidebar();
 	}
 
 	function removeSelectedOrderBy() {
@@ -264,7 +264,7 @@ jQuery(document).ready(function($) {
 		var form_data = new FormData(form);
 
 		if ( jQuery(".woocommerce").length != 0 ) {
-			jQuery('.woocommerce').prepend('<div class="tm-loader"></div>');
+			jQuery('.woocommerce').prepend('<div class="tm-loader" style="'+tm_js.preload_image_style+'"></div>');
 
 			var _request = jQuery.ajax({
 				url: woocommerce_params.ajax_url,
@@ -279,7 +279,7 @@ jQuery(document).ready(function($) {
 			_request.done(function( msg ) {
 
 				jQuery('.is_reset').val('0');
-				jQuery('.woocommerce').html(msg);
+				//jQuery('.woocommerce').html(msg);
 				removeSelectedOrderBy();
 
 				if ( jQuery(".woocommerce").length != 0 ) {

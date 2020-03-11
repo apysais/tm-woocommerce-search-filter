@@ -16,7 +16,7 @@
  * Plugin Name:       TM Woocommerce Search Filter
  * Plugin URI:        https://tornmarketing.com.au/
  * Description:       Torn Marketing Woocommerce Search Filter UI
- * Version:           1.1.17
+ * Version:           1.1.22
  * Author:            Torn Marketing
  * Author URI:        https://tornmarketing.com.au/
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'TM_WOOCOMMERCE_SEARCH_FILTER_VERSION', '1.1.17' );
+define( 'TM_WOOCOMMERCE_SEARCH_FILTER_VERSION', '1.1.22' );
 define( 'TMWSF_INIT_SHORTCODE', false);
 define( 'TMWSF_HOUSELAND_CAT_SLUG', 'house-and-land');
 define( 'TMWSF_LAND_CAT_SLUG', 'land-estate');
@@ -162,22 +162,16 @@ function run_tm_woocommerce_search_filter() {
 	TMWSF_SettingsOption::get_instance();
 
 }
-//run_tm_woocommerce_search_filter();
+
 add_action( 'plugins_loaded', 'run_tm_woocommerce_search_filter' );
 
 function init_tm_woocommerce_search_filter() {
-	// tmwsf_pre($_POST);
-	// tmwsf_pre($_GET);
 
 	if ( !session_id() ) {
 		session_start();
 	}
 
 	tmwsf_set_cookie();
-	// $res_hnl = TMWSF_GetBuilders::get_instance()->get_by('house-and-land');
-	// $res_land = TMWSF_GetBuilders::get_instance()->get_by('land-estate');
-	// tmwsf_pre($res_hnl);
-	// tmwsf_pre($res_land);
-	//exit();
+
 }
 add_action('init', 'init_tm_woocommerce_search_filter');

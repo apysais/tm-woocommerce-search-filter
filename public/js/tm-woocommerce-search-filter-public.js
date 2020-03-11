@@ -252,7 +252,7 @@ function queryAjax() {
 	var form_data = new FormData(form);
 
 	if ( jQuery(".woocommerce").length != 0 ) {
-		jQuery('.woocommerce').prepend('<div class="tm-loader"></div>');
+		jQuery('.woocommerce').prepend('<div class="tm-loader" style="'+tm_js.preload_image_style+'"></div>');
 
 		var _request = jQuery.ajax({
 			url: woocommerce_params.ajax_url,
@@ -275,7 +275,7 @@ function queryAjax() {
 			 // jQuery([document.documentElement, document.body]).animate({
 				// scrollTop: jQuery(".woocommerce").offset().top
 			 // }, 2000);
-			 console.log(applyMobileClicked);
+			 //console.log(applyMobileClicked);
 			 if ( applyMobileClicked ) {
 				 applyMobileClicked = false;
 				 showHideMobileFilter();
@@ -363,7 +363,7 @@ Object.size = function(obj) {
 			initMobileFilter();
 
 			if ( !isMobile ) {
-				init_sticky_sidebar();
+				//init_sticky_sidebar();
 			}
 
 			removeSelectedOrderBy();
@@ -465,10 +465,11 @@ Object.size = function(obj) {
 				var _new_uri = getFormUriParam();
 				setURL(_new_uri);
 				queryAjax();
-			} else {
-				// var _new_uri = getFormUriParam();
-				// setURL(_new_uri);
-				// queryAjax();
+			} else if (tm_js.session !== '0') {
+				//console.log('hasdsa');
+				var _new_uri = getFormUriParam();
+				setURL(_new_uri);
+				queryAjax();
 			}
 
 		});

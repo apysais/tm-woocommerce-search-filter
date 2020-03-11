@@ -44,6 +44,27 @@ class TMWSF_SettingsOption{
 		?>
 			<style>
 				.search-options-val{}
+				#tm-search-filter-main .search-filter .ui-slider-horizontal .ui-slider-range{
+					background:<?php echo $this->slider_range_color(); ?>;
+				}
+				#tm-search-filter-main .search-filter .ui-slider-handle{
+					background:<?php echo $this->slider_range_color(); ?>;
+				}
+				#tm-search-filter-main label.radio-label{
+					background:<?php echo $this->radio_button_label_background(); ?>;
+					color:<?php echo $this->radio_button_label_color(); ?>;
+					border: 1px solid <?php echo $this->radio_button_label_border(); ?>;
+				}
+				#tm-search-filter-main label.radio-label.is-chosen {
+					background:<?php echo $this->radio_button_color_label_chosen_background(); ?>;
+					color:<?php echo $this->radio_button_color_label_font_chosen(); ?>;
+					border: 1px solid <?php echo $this->radio_button_color_label_chosen_border(); ?>;
+				}
+				#tm-search-filter-main label.radio-label:hover{
+					background:<?php echo $this->radio_button_label_color_hover_background(); ?>;
+					color:<?php echo $this->radio_button_label_hover_font_color(); ?>;
+					border: 1px solid <?php echo $this->radio_button_color_label_hover_border(); ?>;
+				}
 			</style>
 		<?php
 	}
@@ -86,6 +107,10 @@ class TMWSF_SettingsOption{
 
 	public function radio_button_color_label_chosen_border() {
 		return get_field('radio_button_color_label_chosen_border', 'option');
+	}
+
+	public function preload_ajax_image() {
+		return get_field('preload_ajax_image', 'option');
 	}
 
 }
